@@ -3,21 +3,20 @@ using AutoCompleteEngine.Engine;
 
 var engine = new SuggestionEngine();
 
-await DataLoader.LoadJsonData("Data/data.json", engine);
+await DataLoader.LoadWords("Data/words_2.json", engine);
 
-Console.Write("Prefix: ");
-var prefix = Console.ReadLine();
+var prefixes = await DataLoader.LoadPrefixes("Data/prefixes.json");
 
-var suggestions = engine.Query(prefix);
-
-if (suggestions == null || suggestions.Count == 0)
+Console.WriteLine("\nТестирование запросов:");
+foreach (var test in prefixes)
 {
-    Console.WriteLine("There are no suggested words!");
+    var results = engine.QueryWithoutTreeDictionaryHashSet(test.Prefix);
 
-    return;
-}
+    Console.WriteLine($"\nПрефикс: '{test.Prefix}'");
+    Console.WriteLine($"Результаты: {string.Join(",", results)}");
 
-foreach (var suggestion in suggestions)
-{
-    Console.WriteLine(suggestion);
+    if (results.Count > 5)
+    {
+        Console.WriteLine("! ОШИБКА: Вернулось больше 5 результатов");
+    }
 }

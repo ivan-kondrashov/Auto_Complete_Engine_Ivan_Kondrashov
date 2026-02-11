@@ -5,7 +5,7 @@ namespace AutoCompleteEngine.Data;
 
 public class DataLoader
 {
-    public static async Task LoadJsonData(string filePath, ISuggestionEngine suggestionEngine)
+    public static async Task LoadWords(string filePath, ISuggestionEngine suggestionEngine, int? count = null)
     {
         using var fileStream = File.OpenRead(filePath);
 
@@ -14,11 +14,37 @@ public class DataLoader
             PropertyNameCaseInsensitive = true
         };
 
-        var data = await JsonSerializer.DeserializeAsync<QueryData>(fileStream, options);
+        var words = await JsonSerializer.DeserializeAsync<List<string>>(fileStream, options);
 
-        foreach (var word in data.Words)
+        if (words != null)
         {
-            suggestionEngine.Ingest(word);
+            if (count.HasValue)
+            {
+                words = words.Take(count.Value).ToList();
+            }
+
+            foreach (var word in words)
+            {
+                suggestionEngine.Ingest(word);
+
+                suggestionEngine.IngestWithoutTreeList(word);
+
+                suggestionEngine.IngestWithoutTreeDictionaryHashSet(word);
+            }
         }
+    }
+
+    public static async Task<List<QueryInfo>> LoadPrefixes(string filePath)
+    {
+        using var fileStream = File.OpenRead(filePath);
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        var queries = await JsonSerializer.DeserializeAsync<List<QueryInfo>>(fileStream, options);
+
+        return queries;
     }
 }

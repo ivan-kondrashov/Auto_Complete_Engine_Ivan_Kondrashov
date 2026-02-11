@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../AutoCompleteEngine.Benchmark/AutoCompleteEngine.Benchmark.csproj" Id="0c373e4c-c297-468f-ad85-2138ff2e9b59" />
   <Project Path="AutoCompleteEngine.csproj" />
 </Solution>

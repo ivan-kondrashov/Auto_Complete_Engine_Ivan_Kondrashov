@@ -1,24 +1,8 @@
-{
-  "words": [
+[
     "Apple", "App", "Application", "Appetizer", "Apply", "Appointment", "Approve",
     "Banana", "Band", "Bandwidth", "Bank", "Banner",
     "Category", "Cat", "Catalog", "Catering", "Catastrophe", "Catnip",
     "Data", "Database", "Dashboard", "Danger", "Daring",
     "Efficient", "Effect", "Effort", "Entry", "Entity",
     "Google", "Go", "Goal", "Gold", "Golf", "Gopher"
-  ],
-"queries": [
-    {
-      "prefix": "app"
-    },
-    {
-      "prefix": "CAT"
-    },
-    {
-      "prefix": "Go"
-    },
-    {
-      "prefix": "xyz"
-    }
-  ]
-}
+]

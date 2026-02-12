@@ -1,5 +1,5 @@
-using AutoCompleteEngine.Data;
-using AutoCompleteEngine.Engine;
+using AutoCompleteEngine.Core.Data;
+using AutoCompleteEngine.Core.Engine;
 using Benchly;
 using BenchmarkDotNet.Attributes;
 

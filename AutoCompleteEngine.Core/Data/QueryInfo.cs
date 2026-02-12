@@ -1,4 +1,4 @@
-﻿namespace AutoCompleteEngine.Data;
+﻿namespace AutoCompleteEngine.Core.Data;
 
 public class QueryInfo
 {

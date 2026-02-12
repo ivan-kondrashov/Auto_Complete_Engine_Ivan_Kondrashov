@@ -1,4 +1,4 @@
-﻿namespace AutoCompleteEngine.Engine;
+﻿namespace AutoCompleteEngine.Core.Engine;
 
 public class TreeNode
 {

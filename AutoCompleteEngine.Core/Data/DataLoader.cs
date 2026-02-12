@@ -1,7 +1,7 @@
-﻿using AutoCompleteEngine.Engine;
+﻿using AutoCompleteEngine.Core.Engine;
 using System.Text.Json;
 
-namespace AutoCompleteEngine.Data;
+namespace AutoCompleteEngine.Core.Data;
 
 public class DataLoader
 {

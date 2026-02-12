@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace AutoCompleteEngine.Engine;
+namespace AutoCompleteEngine.Core.Engine;
 
 public class SuggestionEngine : ISuggestionEngine
 {

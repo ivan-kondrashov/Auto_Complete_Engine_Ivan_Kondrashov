@@ -1,0 +1,76 @@
+﻿<Window x:Class="AutoCompleteEngine.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoCompleteEngine.UI"
+        mc:Ignorable="d"
+        xmlns:viewModels="clr-namespace:AutoCompleteEngine.UI.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainViewModel}"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        Title="AutoCompleteEngine"
+        Height="450"
+        Width="800">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel 
+            Grid.Row="0" 
+            Orientation="Horizontal" 
+            Margin="0,0,0,20">
+
+            <Button 
+                Content="Load CSV" 
+                Command="{Binding LoadDataCommand}"
+                Padding="10,5"
+                Margin="0,0,20,0"/>
+
+            <TextBlock 
+                Text="File path:" 
+                VerticalAlignment="Center" 
+                Margin="0,0,5,0"/>
+
+            <TextBlock 
+                Text="{Binding FileName, FallbackValue='Not selected'}" 
+                VerticalAlignment="Center"
+                FontWeight="Bold"/>
+
+        </StackPanel>
+        
+        <GroupBox 
+            Grid.Row="1" 
+            Header="⏱️ Executing time" 
+            Margin="0,0,0,10"
+            Padding="10">
+            
+            <Grid>
+                <lvc:CartesianChart 
+                    Series="{Binding TimeSeries}"
+                    XAxes="{Binding XAxes}"
+                    YAxes="{Binding YTimeAxes}"
+                    TooltipFindingStrategy="CompareOnlyXTakeClosest"
+                    LegendPosition="Right"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" 
+                  Header="💾 Memory usage" 
+                  Padding="10">
+            
+            <Grid>
+                <lvc:CartesianChart 
+                    Series="{Binding MemorySeries}"
+                    XAxes="{Binding XAxes}"
+                    YAxes="{Binding YMemoryAxes}"
+                    TooltipFindingStrategy="CompareOnlyXTakeClosest"
+                    LegendPosition="Right"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+
+</Window>

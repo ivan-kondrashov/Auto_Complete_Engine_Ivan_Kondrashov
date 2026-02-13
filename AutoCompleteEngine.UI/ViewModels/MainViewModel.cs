@@ -160,7 +160,7 @@ public partial class MainViewModel : ObservableObject
         var methodGroups = groups
             .SelectMany(g => g)
             .GroupBy(x => x.Method)
-            .OrderBy(x => x.Key);
+            .OrderBy(x => x.Average(b => b.TimeNs));
 
         foreach (var methodGroup in methodGroups)
         {
@@ -198,7 +198,7 @@ public partial class MainViewModel : ObservableObject
         var methodGroups = groups
             .SelectMany(g => g)
             .GroupBy(x => x.Method)
-            .OrderBy(x => x.Key);
+            .OrderBy(x => x.Average(b => b.MemoryBytes));
 
         foreach (var methodGroup in methodGroups)
         {

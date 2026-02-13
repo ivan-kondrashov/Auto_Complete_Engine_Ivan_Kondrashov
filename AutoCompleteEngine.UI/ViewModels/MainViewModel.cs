@@ -41,6 +41,7 @@ public partial class MainViewModel : ObservableObject
             Name = "Words count",
             NamePaint = new SolidColorPaint(SKColor.Parse("#2C3E50")),
             NameTextSize = 14,
+            NamePadding = new LiveChartsCore.Drawing.Padding(0, 0, 0, 10),
             LabelsPaint = new SolidColorPaint(SKColor.Parse("#34495E")),
             SeparatorsPaint = new SolidColorPaint(SKColor.Parse("#ECF0F1")) { StrokeThickness = 1 },
             Labels = null
@@ -169,28 +170,22 @@ public partial class MainViewModel : ObservableObject
 
             var color = GetColor(methodGroup.Key);
 
-            var lineSeries = new LineSeries<ObservablePoint>
+            var columnSeries = new ColumnSeries<ObservablePoint>
             {
                 Name = methodGroup.Key,
                 Values = orderedPoints.Select(x => new ObservablePoint(uniqueWordsCounts.IndexOf(x.WordsCount), x.TimeNs)).ToArray(),
-                Fill = null,
-                GeometrySize = 10,
-                Stroke = new SolidColorPaint(SKColor.Parse(color))
-                {
-                    StrokeThickness = 3
-                },
-                GeometryStroke = new SolidColorPaint(SKColors.White) { StrokeThickness = 2 },
-                GeometryFill = new SolidColorPaint(SKColor.Parse(color)),
+                Stroke = null,
+                Fill = new SolidColorPaint(SKColor.Parse(color)),
                 XToolTipLabelFormatter = (point) =>
                     $"Words: {uniqueWordsCounts[(int)point.Coordinate.SecondaryValue]}",
                 YToolTipLabelFormatter = (point) =>
                     $"Time: {point.Coordinate.PrimaryValue:F1} ns",
-                LineSmoothness = 0.5,
                 IsHoverable = true,
-                DataPadding = new LiveChartsCore.Drawing.LvcPoint(1, 1)
+                MaxBarWidth = 50,
+                Padding = 1
             };
 
-            series.Add(lineSeries);
+            series.Add(columnSeries);
         }
 
         TimeSeries = series.ToArray();
@@ -222,7 +217,7 @@ public partial class MainViewModel : ObservableObject
                 XToolTipLabelFormatter = (point) =>
                     $"Words: {uniqueWordsCounts[(int)point.Coordinate.SecondaryValue]}",
                 YToolTipLabelFormatter = (point) =>
-                    $"Memory: {point.Coordinate.PrimaryValue / 1024:F2} KB",
+                    $"Memory: {point.Coordinate.PrimaryValue:F2} B",
                 IsHoverable = true,
                 MaxBarWidth = 50,
                 Padding = 1

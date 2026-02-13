@@ -24,7 +24,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Recursive_DFS_String()
+    public void Recursive_DFS_String()
     {
         foreach (var prefix in _prefixes)
         {
@@ -33,7 +33,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Recursive_DFS_StringBuilder()
+    public void Recursive_DFS_StringBuilder()
     {
         foreach (var prefix in _prefixes)
         {
@@ -42,7 +42,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Loop_DFS_String()
+    public void Loop_DFS_String()
     {
         foreach (var prefix in _prefixes)
         {
@@ -51,7 +51,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Loop_DFS_StringBuilder()
+    public void Loop_DFS_StringBuilder()
     {
         foreach (var prefix in _prefixes)
         {
@@ -60,7 +60,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Loop_BFS_String()
+    public void Loop_BFS_String()
     {
         foreach (var prefix in _prefixes)
         {
@@ -69,7 +69,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Loop_BFS_StringBuilder()
+    public void Loop_BFS_StringBuilder()
     {
         foreach (var prefix in _prefixes)
         {
@@ -78,7 +78,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Recursive_BFS_String()
+    public void Recursive_BFS_String()
     {
         foreach (var prefix in _prefixes)
         {
@@ -87,7 +87,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Recursive_BFS_StringBuilder()
+    public void Recursive_BFS_StringBuilder()
     {
         foreach (var prefix in _prefixes)
         {
@@ -96,7 +96,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Without_Tree_List()
+    public void Without_Tree_List()
     {
         foreach (var prefix in _prefixes)
         {
@@ -105,7 +105,7 @@ public class SuggestionEngineBenchmark
     }
 
     [Benchmark]
-    public void Query_Without_Tree_Dictionary_HashSet()
+    public void Without_Tree_Dictionary_HashSet()
     {
         foreach (var prefix in _prefixes)
         {
